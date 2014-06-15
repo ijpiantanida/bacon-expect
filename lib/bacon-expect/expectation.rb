@@ -12,28 +12,26 @@ module BaconExpect
     end
 
     def to(matcher)
-      unless matcher.matches?(@subject, &@subject_block)
-        raise matcher.fail!(@subject, &@subject_block)
-      end
+      fail(matcher) unless matcher_passes(matcher)
       assert
     end
 
     def not_to(matcher)
-      if matcher.matches?(@subject, &@subject_block)
-        raise matcher.fail!(@subject, &@subject_block)
-      end
+      fail(matcher) if matcher_passes(matcher)
       assert
     end
     alias_method :to_not, :not_to
+
+    def matcher_passes(matcher)
+      matcher.matches?(@subject, &@subject_block)
+    end
+
+    def fail(matcher)
+      raise matcher.fail!(@subject, &@subject_block)
+    end
 
     def assert
       true.should == true
     end
   end
-end
-
-module Spector
-
-
-
 end
