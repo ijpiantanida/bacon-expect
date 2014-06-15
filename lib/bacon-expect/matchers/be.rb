@@ -1,15 +1,15 @@
 module BaconExpect; module Matcher
-  class Eql
+  class Be
     def initialize(value)
       @value = value
     end
 
     def matches?(subject)
-      subject.eql?(@value)
+      subject.equal?(@value)
     end
 
     def fail!(subject)
-      raise FailedExpectation.new("#{subject} expected to be eql? to #{@value}")
+      raise FailedExpectation.new("#{subject} expected to be equal? to #{@value}")
     end
   end
 end; end

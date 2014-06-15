@@ -20,7 +20,15 @@ module BaconExpect
       def eql(value)
         Eql.new(value)
       end
-      alias_method :be, :eql
+
+      def be(value)
+        Be.new(value)
+      end
+      alias_method :equal, :be
+
+      def eq(value)
+        Eq.new(value)
+      end
 
       def match(regex)
         Match.new(regex)
