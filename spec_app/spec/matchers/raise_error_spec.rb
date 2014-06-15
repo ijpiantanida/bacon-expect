@@ -54,4 +54,8 @@ describe "Matcher::RaiseError" do
   it "raise_error with a class and a regex argument fails if the block raises an exception of a different class" do
     expect_failure{ expect{ raise ArgumentError.new("with a message") }.to raise_error(ZeroDivisionError, /message/) }
   end
+
+  it "raise_exception is an alias of raise_error " do
+    expect{ 1/0 }.to raise_exception(ZeroDivisionError)
+  end
 end

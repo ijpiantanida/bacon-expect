@@ -16,6 +16,7 @@ module BaconExpect
       def raise_error(exception_class = Exception, message = "")
         RaiseError.new(exception_class, message)
       end
+      alias_method :raise_exception, :raise_error
 
       def eql(value)
         Eql.new(value)
