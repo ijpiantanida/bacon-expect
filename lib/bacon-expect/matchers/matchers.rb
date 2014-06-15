@@ -67,6 +67,10 @@ module BaconExpect
         Change.new(change_block)
       end
 
+      def be_within(range)
+        BeWithin.new(range)
+      end
+
       def method_missing(method_name, *args, &block)
         string_method_name = method_name.to_s
         match_be = string_method_name.match(/^be_(.*)/)
