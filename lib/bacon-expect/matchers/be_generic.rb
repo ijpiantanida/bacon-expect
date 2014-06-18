@@ -12,7 +12,6 @@ module BaconExpect; module Matcher
     def fail!(subject)
       message = "#{subject} expected to be #{@method_name}"
       message += " with #{@args}" unless @args.empty?
-      message += " to return true"
       raise FailedExpectation.new(message)
     end
   end
