@@ -1,4 +1,4 @@
-# BaconExpect
+# BaconExpect [![Build Status](https://travis-ci.org/ijpiantanida/bacon-expect.svg?branch=master)](https://travis-ci.org/ijpiantanida/bacon-expect) [![Code Climate](https://codeclimate.com/github/ijpiantanida/bacon-expect.png)](https://codeclimate.com/github/ijpiantanida/bacon-expect)
 
 Bring [RSpec 3.0 expect syntax](https://www.relishapp.com/rspec/rspec-expectations/v/3-0/docs/built-in-matchers) to RubyMotion's MacBacon.
 ```ruby
