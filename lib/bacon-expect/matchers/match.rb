@@ -1,15 +1,11 @@
 module BaconExpect; module Matcher
-  class Match
-    def initialize(regex)
-      @regex = regex
+  class Match < SingleMethod
+    def initialize(value)
+      super(:match, value)
     end
 
-    def matches?(subject)
-      subject.match(@regex)
-    end
-
-    def fail!(subject)
-      raise FailedExpectation.new("\"#{subject}\" expected to match #{@regex}")
+    def fail_message(subject)
+      "\"#{subject}\" expected to match #{@regex}"
     end
   end
 end; end

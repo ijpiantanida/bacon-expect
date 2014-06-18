@@ -1,18 +1,14 @@
 module BaconExpect; module Matcher
-  class BeGeneric
-    def initialize(method_name, *args)
-      @method_name = method_name
-      @args = args
+  class BeGeneric < SingleMethod
+    def initialize(method_name, *values)
+      super("#{method_name}?", *values)
     end
 
-    def matches?(value)
-      value.send("#{@method_name}?", *@args)
-    end
-
-    def fail!(subject)
-      message = "#{subject} expected to be #{@method_name}"
-      message += " with #{@args}" unless @args.empty?
-      raise FailedExpectation.new(message)
+    def fail_message(subject)
+      message = "#{subject} #{@method_name}?"
+      message += "(#{@values.join(', ')})" unless @values.empty?
+      message += " expected to be true"
+      message
     end
   end
 end; end
