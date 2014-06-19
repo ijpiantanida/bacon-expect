@@ -14,16 +14,15 @@ module BaconExpect; module Matcher
       expectation_block.call
       new_value = @change_block.call
       if @change_amount
-        new_value - @change_amount == old_value
+        @value_diff = new_value - old_value
+        @value_diff == @change_amount
       else
         new_value != old_value
       end
     end
 
-    def fail!(subject)
-      message = "Block expected to change value"
-      message += " by #{@change_amount}" if @change_amount
-      raise FailedExpectation.new(message)
+    def fail!(subject, negated)
+      raise FailedExpectation.new(FailMessageRenderer.message_for_change(negated, @change_amount, @value_diff))
     end
   end
 end; end

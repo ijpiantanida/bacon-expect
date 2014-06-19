@@ -8,8 +8,8 @@ module BaconExpect; module Matcher
       subject[0...@start_string.size] == @start_string
     end
 
-    def fail!(subject)
-      raise FailedExpectation.new("#{subject} expected to start with #{@start_string}")
+    def fail!(subject, negated)
+      raise FailedExpectation.new(FailMessageRenderer.message_for_start_with(negated, subject, @start_string))
     end
   end
 end; end

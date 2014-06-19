@@ -4,8 +4,8 @@ module BaconExpect; module Matcher
       super(:==, value)
     end
 
-    def fail_message(subject)
-      "#{subject} expected to be == to #{@value}"
+    def fail_message(subject, negated)
+      FailMessageRenderer.message_for_be_eq(negated, subject, @values.first)
     end
   end
 end; end

@@ -4,10 +4,14 @@ describe "Matcher::Satisfy" do
   end
 
   it 'satisfy fails when the block returns false' do
-    expect_failure{ expect(1).to satisfy{|v| v == 3} }
+    expect_failure("Block expected to satisfy condition"){ expect(1).to satisfy{|v| v == 3} }
   end
 
   it 'satisfy fails when the block raises an exception' do
     expect{ expect(1).to satisfy{|v| 1/0 } }.to raise_error(ZeroDivisionError)
+  end
+
+  it 'satisfy fails when the block returns true but asked not to' do
+    expect_failure("Block not expected to satisfy condition"){ expect(1).not_to satisfy{|v| v == 1} }
   end
 end

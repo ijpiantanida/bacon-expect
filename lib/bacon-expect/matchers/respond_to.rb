@@ -21,8 +21,8 @@ module BaconExpect; module Matcher
       valid
     end
 
-    def fail!(subject)
-      raise FailedExpectation.new("\"#{subject}\" expected to respond_to? #{@method_name}")
+    def fail!(subject, negated)
+      raise FailedExpectation.new(FailMessageRenderer.message_for_respond_to(negated, subject, @method_name, @number_of_args))
     end
   end
 end; end

@@ -8,8 +8,8 @@ module BaconExpect; module Matcher
       @values.all?{|v| subject.include?(v)}
     end
 
-    def fail!(subject)
-      raise FailedExpectation.new("\"#{subject}\" expected to include #{@values}")
+    def fail!(subject, negated)
+      raise FailedExpectation.new(FailMessageRenderer.message_for_include(negated, subject, @values))
     end
   end
 end; end

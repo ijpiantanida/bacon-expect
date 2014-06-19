@@ -8,15 +8,15 @@ module BaconExpect; module Matcher
       value.size == @number_of_items
     end
 
-    def items
-      self
+    [:items, :item, :keys, :values].each do |key_type_name|
+      define_method(key_type_name) do
+        @key_type_name = key_type_name
+        self
+      end
     end
 
-    alias_method :keys, :items
-    alias_method :values, :items
-
-    def fail!(subject)
-      raise FailedExpectation.new("#{subject} expected to have #{@number_of_items} items")
+    def fail!(subject, negated)
+      raise FailedExpectation.new(FailMessageRenderer.message_for_have_items(negated, subject, @number_of_items, subject.size, @key_type_name))
     end
   end
 end; end

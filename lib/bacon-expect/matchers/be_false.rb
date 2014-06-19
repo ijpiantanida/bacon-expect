@@ -4,8 +4,9 @@ module BaconExpect; module Matcher
       !value
     end
 
-    def fail!(subject)
-      raise FailedExpectation.new("#{subject} expected to be false but wasn't")
+    def fail!(subject, negated)
+      message = FailMessageRenderer.message_for_be_false(negated, subject)
+      raise FailedExpectation.new(message)
     end
   end
 end; end

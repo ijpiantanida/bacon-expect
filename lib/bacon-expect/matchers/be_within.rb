@@ -14,8 +14,8 @@ module BaconExpect; module Matcher
       (subject - @center_value).abs <= @range
     end
 
-    def fail!(subject)
-      raise FailedExpectation.new("#{subject} expected to be within #{@range} of #{@center_value}")
+    def fail!(subject, negated)
+      raise FailedExpectation.new(FailMessageRenderer.message_for_be_within(negated, subject, @range, @center_value))
     end
   end
 end; end

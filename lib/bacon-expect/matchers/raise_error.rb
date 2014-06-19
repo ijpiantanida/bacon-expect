@@ -22,10 +22,10 @@ module BaconExpect; module Matcher
       )
     end
 
-    def fail!(subject)
-      message = "Block expected to raise exception of type #{@error_class}"
-      message += " but was #{@rescued_exception.class} #{@rescued_exception}" if @rescued_exception
-      raise FailedExpectation.new(message)
+    def fail!(subject, negated)
+      show_class = @error_class != Exception
+      show_message = !@error_message.is_a?(String) || !@error_message.empty?
+      raise FailedExpectation.new(FailMessageRenderer.message_for_raise_error(negated, show_class, @error_class, show_message, @error_message, @rescued_exception))
     end
   end
 end; end

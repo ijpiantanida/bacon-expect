@@ -4,14 +4,19 @@ describe "Matcher::BeNil" do
   end
 
   it "be_nil fails when value is true" do
-    expect_failure{ expect(true).to be_nil }
+    expect_failure("true expected to be nil"){ expect(true).to be_nil }
   end
 
   it "be_nil fails when value is false" do
-    expect_failure{ expect(false).to be_nil }
+    expect_failure("false expected to be nil"){ expect(false).to be_nil }
   end
 
   it "be_nil fails when value is an Object" do
-    expect_failure{ expect(Object.new).to be_nil }
+    object = Object.new
+    expect_failure("#{object} expected to be nil"){ expect(object).to be_nil }
+  end
+
+  it "be_nil fails when value is nil but asked not to" do
+    expect_failure("nil not expected to be nil"){ expect(nil).not_to be_nil }
   end
 end

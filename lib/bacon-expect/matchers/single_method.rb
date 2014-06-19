@@ -9,12 +9,12 @@ module BaconExpect; module Matcher
       subject.send(@method_name, *@values)
     end
 
-    def fail!(subject)
-      raise FailedExpectation.new(self.fail_message(subject))
+    def fail!(subject, negated)
+      raise FailedExpectation.new(self.fail_message(subject, negated))
     end
 
-    def fail_message(subject)
-      raise 'Subclass responsability'
+    def fail_message(subject, negated = false)
+      FailMessageRenderer.message_for_be(negated, subject, @method_name, @values)
     end
   end
 end; end

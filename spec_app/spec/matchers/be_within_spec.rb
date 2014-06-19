@@ -9,10 +9,10 @@ describe "Matcher::BeWithin" do
   end
 
   it "fails when subject is not within range" do
-    expect_failure{ expect(27.5).not_to be_within(0.5).of(28) }
-    expect_failure{ expect(27.5).not_to be_within(0.5).of(27) }
-    expect_failure{ expect(27.5).to be_within(0.5).of(28.1) }
-    expect_failure{ expect(27.5).to be_within(0.5).of(26.9) }
+    expect_failure("27.5 not expected to be within 0.5 of 28"){ expect(27.5).not_to be_within(0.5).of(28) }
+    expect_failure("27.5 not expected to be within 0.5 of 27"){ expect(27.5).not_to be_within(0.5).of(27) }
+    expect_failure("27.5 expected to be within 0.5 of 28.5"){ expect(27.5).to be_within(0.5).of(28.5) }
+    expect_failure("27.5 expected to be within 0.5 of 26.5"){ expect(27.5).to be_within(0.5).of(26.5) }
   end
 
   it "raises an exception when the matcher is not complete" do

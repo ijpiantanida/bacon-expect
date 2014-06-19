@@ -8,8 +8,8 @@ module BaconExpect; module Matcher
       @condition_block.call(*values)
     end
 
-    def fail!(subject)
-      raise FailedExpectation.new("\"#{subject}\" expected to satisfy condition")
+    def fail!(subject, negated)
+      raise FailedExpectation.new(FailMessageRenderer.message_for_satisfy(negated))
     end
   end
 end; end

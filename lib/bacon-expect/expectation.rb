@@ -12,12 +12,12 @@ module BaconExpect
     end
 
     def to(matcher)
-      fail(matcher) unless matcher_passes(matcher)
+      fail(matcher, false) unless matcher_passes(matcher)
       assert
     end
 
     def not_to(matcher)
-      fail(matcher) if matcher_passes(matcher)
+      fail(matcher, true) if matcher_passes(matcher)
       assert
     end
     alias_method :to_not, :not_to
@@ -26,8 +26,8 @@ module BaconExpect
       matcher.matches?(@subject, &@subject_block)
     end
 
-    def fail(matcher)
-      raise matcher.fail!(@subject, &@subject_block)
+    def fail(matcher, negated)
+      raise matcher.fail!(@subject, negated, &@subject_block)
     end
 
     def assert
