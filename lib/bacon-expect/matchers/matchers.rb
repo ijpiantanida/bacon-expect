@@ -22,13 +22,16 @@ module BaconExpect
         Eql.new(value)
       end
 
-      def be(value)
+      def equal(value)
         Be.new(value)
       end
-      alias_method :equal, :be
 
       def eq(value)
         Eq.new(value)
+      end
+
+      def be(*args)
+        args.empty? ? BeMatcher.new : Be.new(*args)
       end
 
       def match(regex)
