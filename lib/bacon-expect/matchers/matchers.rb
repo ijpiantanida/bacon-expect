@@ -18,6 +18,14 @@ module BaconExpect
       end
       alias_method :raise_exception, :raise_error
 
+      def be_a(value)
+        SingleMethod.new(:kind_of?, value)
+      end
+
+      def be_an(value)
+        SingleMethod.new(:kind_of?, value)
+      end
+
       def eql(value)
         Eql.new(value)
       end
